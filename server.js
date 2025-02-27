@@ -4,14 +4,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files from the React app build directory
-app.use(express.static(path.join(__dirname, 'games-directory/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Serve the Phaser game files
 app.use(express.static(__dirname));
 
 // For any request that doesn't match one above, send back the index.html file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'games-directory/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port, () => {
