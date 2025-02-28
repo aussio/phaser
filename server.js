@@ -12,11 +12,11 @@ app.use('/games', express.static(path.join(__dirname, 'games')));
 
 // Handle vanity URLs for games
 app.get('/hello-world', (req, res) => {
-    res.sendFile(path.join(__dirname, 'games', 'helloWorld.html'));
+    res.sendFile(path.join(__dirname, 'games', 'helloWorld', 'helloWorld.html'));
 });
 
 // Add more game routes here as they are created
-// Example: app.get('/game-name', (req, res) => { res.sendFile(path.join(__dirname, 'games', 'gameName.html')); });
+// Example: app.get('/game-name', (req, res) => { res.sendFile(path.join(__dirname, 'games', 'gameName', 'gameName.html')); });
 
 // For any request that doesn't match one above, send back the index.html file
 app.get('*', (req, res) => {

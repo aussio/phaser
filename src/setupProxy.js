@@ -7,9 +7,9 @@ module.exports = function (app) {
 
     // Handle vanity URLs for games in development
     app.get('/hello-world', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', 'games', 'helloWorld.html'));
+        res.sendFile(path.join(__dirname, '..', 'games', 'helloWorld', 'helloWorld.html'));
     });
 
     // Add more game routes here as they are created
-    // Example: app.get('/game-name', (req, res) => { res.sendFile(path.join(__dirname, '..', 'games', 'gameName.html')); });
+    // Example: app.get('/game-name', (req, res) => { res.sendFile(path.join(__dirname, '..', 'games', 'gameName', 'gameName.html')); });
 }; 

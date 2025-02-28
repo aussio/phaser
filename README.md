@@ -75,15 +75,16 @@ Games are built using Phaser 3.55.2. It's this version just because it's what Cu
 #### Game Template
 
 A basic game template is provided in:
-- `games/template.html`
-- `games/template.js`
+- `games/template/template.html`
+- `games/template/template.js`
 
 To create a new game:
 
-1. Copy the template files and rename them for your game
-2. Add your game to the `games` array in `src/App.js`
-3. Add a route handler in `server.js` and `src/setupProxy.js`
-4. Create a screenshot for your game and add it to `src/assets/`
+1. Create a new directory for your game in the `games` directory
+2. Copy the template files into your game directory and rename them
+3. Add your game to the `games` array in `src/App.js`
+4. Add a route handler in `server.js` and `src/setupProxy.js`
+5. Create a screenshot for your game and add it to `src/assets/`
 
 ## File Structure
 
@@ -92,10 +93,12 @@ phaser/
 ├── build/                  # Production build output
 ├── games/                  # Phaser games
 │   ├── game.css            # Shared CSS for games
-│   ├── helloWorld.html     # Hello World game HTML
-│   ├── helloWorld.js       # Hello World game logic
-│   ├── template.html       # Template for new games
-│   └── template.js         # Template for new game logic
+│   ├── helloWorld/         # Hello World game
+│   │   ├── helloWorld.html # Hello World game HTML
+│   │   └── helloWorld.js   # Hello World game logic
+│   ├── template/           # Template for new games
+│   │   ├── template.html   # Template HTML file
+│   │   └── template.js     # Template JS file
 ├── public/                 # Static assets
 ├── src/                    # React application
 │   ├── assets/             # Game screenshots and assets
@@ -115,28 +118,23 @@ phaser/
 
 ## Adding a New Game
 
-1. Create a new HTML file in the `games` directory:
-   ```html
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Your Game Title - Phaser Game</title>
-       <link rel="stylesheet" href="/games/game.css">
-       <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
-   </head>
-   <body>
-       <a href="/" class="back-button">← Back</a>
-       <div id="phaser-game"></div>
-       <script src="/games/your-game.js"></script>
-   </body>
-   </html>
+1. Create a new directory for your game in the `games` directory:
+   ```bash
+   mkdir -p games/your-game
    ```
 
-2. Create a new JS file in the `games` directory using the template.js as a starting point
+2. Copy the template files to your game directory and rename them:
+   ```bash
+   cp games/template/template.html games/your-game/your-game.html
+   cp games/template/template.js games/your-game/your-game.js
+   ```
 
-3. Add your game to the `games` array in `src/App.js`:
+3. Update the HTML file to reference your game's JS file:
+   ```html
+   <script src="/games/your-game/your-game.js"></script>
+   ```
+
+4. Add your game to the `games` array in `src/App.js`:
    ```javascript
    const games = [
      // Existing games...
@@ -150,17 +148,17 @@ phaser/
    ];
    ```
 
-4. Add a route handler in `server.js`:
+5. Add a route handler in `server.js`:
    ```javascript
    app.get('/your-game-id', (req, res) => {
-       res.sendFile(path.join(__dirname, 'games', 'your-game.html'));
+       res.sendFile(path.join(__dirname, 'games', 'your-game', 'your-game.html'));
    });
    ```
 
-5. Add a route handler in `src/setupProxy.js`:
+6. Add a route handler in `src/setupProxy.js`:
    ```javascript
    app.get('/your-game-id', (req, res) => {
-       res.sendFile(path.join(__dirname, '..', 'games', 'your-game.html'));
+       res.sendFile(path.join(__dirname, '..', 'games', 'your-game', 'your-game.html'));
    });
    ```
 
