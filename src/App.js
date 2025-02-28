@@ -12,7 +12,7 @@ function App() {
       title: 'Hello World',
       description: 'A simple Phaser 3 demo with a bouncing logo and particle effects.',
       screenshot: helloWorldScreenshot,
-      path: '/games/helloWorld.html'
+      htmlFile: 'helloWorld.html'  // The actual HTML file in the games directory
     },
     // Add more games here as they are created
   ];
